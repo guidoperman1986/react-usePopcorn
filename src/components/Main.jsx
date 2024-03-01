@@ -1,19 +1,27 @@
-import { ListBox } from "./ListBox";
-import { WatchedBox } from "./WatchedBox";
+import { Box } from "./ListBox";
+import { MovieList } from "./MovieList";
+import { WatchedMovieList } from "./WatchedMovieList";
+import { WatchedSummary } from "./WatchedSummary";
 
 export const Main = ({
-  isOpen1,
-  setIsOpen1,
-  isOpen2,
-  setIsOpen2,
+  isOpen,
+  setIsOpen,
   movies,
   watched,
 }) => {
   return (
     <main className="main">
-      <ListBox isOpen1={isOpen1} setIsOpen1={setIsOpen1} movies={movies} />
+      <Box isOpen={isOpen} setIsOpen={setIsOpen}>
+        <MovieList movies={movies} />
+      </Box>
 
-      <WatchedBox isOpen2={isOpen2} setIsOpen2={setIsOpen2} watched={watched} />
+      <Box isOpen={isOpen} setIsOpen={setIsOpen}>
+        <>
+          <WatchedSummary watched={watched} />
+
+          <WatchedMovieList watched={watched} />
+        </>
+      </Box>
     </main>
   );
 };

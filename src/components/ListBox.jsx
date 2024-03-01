@@ -1,15 +1,14 @@
-import { MovieList } from "./MovieList";
 
-export const ListBox = ({ isOpen1, setIsOpen1, movies }) => {
+export const Box = ({ isOpen, setIsOpen, children }) => {
   return (
     <div className="box">
       <button
         className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
+        onClick={() => setIsOpen((open) => !open)}
       >
-        {isOpen1 ? "–" : "+"}
+        {isOpen ? "–" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen && children}
     </div>
   );
 };

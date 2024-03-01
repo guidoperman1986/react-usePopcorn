@@ -53,18 +53,16 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen1, setIsOpen1] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (
     <>
-      <Navbar />
+      <Navbar movies={movies} />
 
       <Main
-        isOpen1={isOpen1}
-        setIsOpen1={setIsOpen1}
-        isOpen2={isOpen2}
-        setIsOpen2={setIsOpen2}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         movies={movies}
         watched={watched}
       />
