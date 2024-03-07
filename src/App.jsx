@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { Main } from "./components/Main";
 import { ShowRating } from "./components/ShowRating";
+import { getNowPlayedMovies, useFetchData } from "./services/movies";
 
 const tempMovieData = [
   {
@@ -52,21 +53,20 @@ const tempWatchedData = [
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen, setIsOpen] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
+
+  const { now_played } = useFetchData();
+
+  if (now_played.results?.length > 0 && movies.length === 0) {
+    setMovies(now_played.results);
+  }
 
   return (
     <>
       <Navbar movies={movies} />
 
-      <Main
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        movies={movies}
-        watched={watched}
-      />
+      <Main movies={movies} watched={watched} />
     </>
   );
 }
